@@ -26,7 +26,7 @@ The sequencing depth of this sample is not sufficient to make determinations (or
 The sequencing was carried out to achieve roughly 30X coverage.
 Sequencing quality is good, for both the tumor and normal samples.
 Based on allele frequencies the sample appears to be roughly 25\% tumor and 75\% normal, which is in line with expectations for this type of tumor.
-We think the large number of variants with allele frequencies at 10-12\% are clonal or nearly clonal heterozygous variants.
+We beleive variants with allele frequencies at 10-12\% are clonal or nearly clonal heterozygous variants.
 
 ```{r vaf_histogram, echo=FALSE,warning=FALSE,fig.width=6,fig.height=4}
 pl1
@@ -38,7 +38,7 @@ pl1
 
 Tumor variants were called with MuTect2, MuTect1, and Varscan with very similar results, and the MuTect2 mutations are presented here.
 At 30X depth, a clonal heterozygous variant in this sample is only likely to have 3-4 alternate (non-reference) reads present, which presents a challenge for variant calling, because the evidence metric used to classify a site as variant is proportional to the number of alternate reads observed.
-For areas of moderately low coverage two alternate reads are sufficient for calling a clonal heterozygous variant, but it is not generally advisable to call variants with alternate read counts that low because the risk of an error is quite high.
+For areas of lower coverage two alternate reads are sufficient for calling a clonal heterozygous variant, but it is not generally advisable to call variants with alternate read counts that low because the risk of an error is quite high.
 The coding variants that pass all MuTect2 quality filters and have three or more alternate reads are in the table below.
 
 
@@ -69,6 +69,7 @@ There are three alternate reads and 27 reference reads at this position in the t
 No combination of variant callers and parameter adjustments we have found will cause a variant caller to identify this site as variant.
 However, since we have independent evidence that this site is truly variant we can adjust the evidence threshold.
 The table below shows all sites that have three or more variant reads, pass all MuTect filters except the evidence filter, and have annotations in one or more of CGC, COSMIC (suppressed in the table below for space), or MUTSIG.
+These are sites identified in the tumor that have a similar level of evidence as the PIK3CA mutation, and are annotated as significant in the three cancer databases.
 
 ```{r final_table,echo=FALSE}
 tbl2 <- final_fr %>% dplyr::filter(alt_depth > 2) %>%
