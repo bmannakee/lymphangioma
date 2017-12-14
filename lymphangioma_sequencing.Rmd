@@ -37,9 +37,9 @@ pl1
 ## Variant calling
 
 Tumor variants were called with MuTect2, MuTect1, and Varscan with very similar results, and the MuTect2 mutations are presented here.
-At 30X depth, a clonal heterozygous variant in this sample is only likely to have 3-4 alternate (non-reference) reads present, which presents a challenge for variant calling, because the evidence used to classify a site as variant is proportional to the number of alternate reads observed.
-For areas of moderately low coverage only 2 reads are sufficient for calling a clonal heterozygous variant, but it is not generally advisable to call variants with alternate read counts that low since the possibility that these are errors is quite high.
-The coding variants that pass all MuTect2 quality filters and have 3 or more alternate reads are in the table below.
+At 30X depth, a clonal heterozygous variant in this sample is only likely to have 3-4 alternate (non-reference) reads present, which presents a challenge for variant calling, because the evidence metric used to classify a site as variant is proportional to the number of alternate reads observed.
+For areas of moderately low coverage two alternate reads are sufficient for calling a clonal heterozygous variant, but it is not generally advisable to call variants with alternate read counts that low because the risk of an error is quite high.
+The coding variants that pass all MuTect2 quality filters and have three or more alternate reads are in the table below.
 
 
 
@@ -59,13 +59,13 @@ tbl1 <- filter_fr %>% dplyr::filter(all_filters=="PASS" & alt_depth > 2) %>%
 kable(tbl1)
 ```
 
-Restricting the callset to those variants with more than two alternate reads excludes 10 called variants, but only one of these is annotated as significant by the Cancer Genome Consortium(CGC), COSMIC, or MUTSIG.
+Ten variants are called by MuTect based on evidence from only 2 alternate reads, but only one of these is annotated as significant by the Cancer Genome Consortium(CGC), COSMIC, or MUTSIG.
 The significant variant is a p.Y2162fs frame shift deletion in NF1, covered by 2 alternate reads and 19 reference reads, which was not observed in the targeted deep sequencing done by Foundation One.
 Among the called coding variants only the NAT2 variant p.R268K is annotated in COSMIC, but it is not annotated as significant by CGC or MUTSIG.
 
 \newpage
-Unfortunately, we know from Foundation One sequencing that there is a significant PIK3CA H1047R mutation, and it is also not called.
-There are three alternate reads at this position in the tumor, but they have slightly below average base quality scores which causes the evidence for a variant to fall below the threshold that MuTect uses to classify sites as variant.
+Unfortunately, we know from Foundation One sequencing that there is a significant PIK3CA H1047R mutation that is not called by MuTect.
+There are three alternate reads and 27 reference reads at this position in the tumor (VAF=0.10), but they have slightly below average base quality scores which causes the evidence to fall below the threshold that MuTect uses to classify sites as variant.
 No combination of variant callers and parameter adjustments we have found will cause a variant caller to identify this site as variant.
 However, since we have independent evidence that this site is truly variant we can adjust the evidence threshold.
 The table below shows all sites with three or more variant reads, passing all MuTect filters except the evidence filter, and further restricting the results to those variants that are annotated by one or more of CGC, COSMIC (suppressed in the table below for space), or MUTSIG.
