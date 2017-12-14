@@ -26,7 +26,7 @@ The sequencing depth of this sample is not sufficient to make determinations (or
 The sequencing was carried out to achieve roughly 30X coverage.
 Sequencing quality is good, for both the tumor and normal samples.
 Based on allele frequencies the sample appears to be roughly 25\% tumor and 75\% normal, which is in line with expectations for this type of tumor.
-The large number of variants with allele frequencies at 10-12\% likely represent clonal or nearly clonal heterozygous variants.
+We think the large number of variants with allele frequencies at 10-12\% are clonal or nearly clonal heterozygous variants.
 
 ```{r vaf_histogram, echo=FALSE,warning=FALSE,fig.width=6,fig.height=4}
 pl1
@@ -68,7 +68,7 @@ Unfortunately, we know from Foundation One sequencing that there is a significan
 There are three alternate reads and 27 reference reads at this position in the tumor (VAF=0.10), but they have slightly below average base quality scores which causes the evidence to fall below the threshold that MuTect uses to classify sites as variant.
 No combination of variant callers and parameter adjustments we have found will cause a variant caller to identify this site as variant.
 However, since we have independent evidence that this site is truly variant we can adjust the evidence threshold.
-The table below shows all sites with three or more variant reads, passing all MuTect filters except the evidence filter, and further restricting the results to those variants that are annotated by one or more of CGC, COSMIC (suppressed in the table below for space), or MUTSIG.
+The table below shows all sites that have three or more variant reads, pass all MuTect filters except the evidence filter, and have annotations in one or more of CGC, COSMIC (suppressed in the table below for space), or MUTSIG.
 
 ```{r final_table,echo=FALSE}
 tbl2 <- final_fr %>% dplyr::filter(alt_depth > 2) %>%
