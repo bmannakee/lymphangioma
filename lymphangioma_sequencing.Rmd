@@ -18,6 +18,7 @@ We can, however, make a couple of assumptions that make the data useful.
 The PIK3CA mutation is *seen* by the variant callers, but the *evidence* from the alternate reads at this site is just below the threshold needed to confidently call the site variant.
 By adjusting the evidence threshold down to meet the standard provided by the PIK3CA mutation, it is possible to generate a relatively high-confidence set of variant calls.
 Alone this would not be enough to declare the variants described below as the *complete* set of variants present in the tumor, but combined with other information it may be sufficient for the study at hand.
+The sequencing depth of this sample is not sufficient to make determinations (or even guesses) about copy number variation.
 
 
 ## Sequencing characteristics
@@ -27,7 +28,7 @@ Sequencing quality is good, for both the tumor and normal samples.
 Based on allele frequencies the sample appears to be roughly 25\% tumor and 75\% normal, which is in line with expectations for this type of tumor.
 The large number of variants with allele frequencies at 10-12\% likely represent clonal or nearly clonal heterozygous variants.
 
-```{r vaf_histogram, echo=FALSE,warning=FALSE}
+```{r vaf_histogram, echo=FALSE,warning=FALSE,fig.width=6,fig.height=4}
 pl1
 ```
 
